@@ -13,8 +13,8 @@ import java.io.*;
 import java.net.*;
 import java.util.ResourceBundle;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
