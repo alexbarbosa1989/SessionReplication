@@ -1,5 +1,6 @@
-# Basic web app to test session replication and sticky session in JBoss/Wildfly
+# Basic web app to test session replication and sticky session in JBoss EAP 8.x / Wildfly 28 (or upper)
 
+**NOTE:** For EAP 7.x / Wildfly 27 (or lower) refers to the [main](https://github.com/alexbarbosa1989/SessionReplication/tree/main) branch in current repo.
 
 Original code (@author  Stan Silvert) and usage description in Red Hat solution article https://access.redhat.com/solutions/46373
 
