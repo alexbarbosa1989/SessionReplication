@@ -8,7 +8,7 @@ Usage
 
 1- Clone project:
 ~~~
-git clone https://github.com/alexbarbosa1989/SessionReplication
+git clone -b main https://github.com/alexbarbosa1989/SessionReplication
 ~~~
 2- Generate war file:
 ~~~
