@@ -1,6 +1,0 @@
-org/jboss/example/counter/CounterInitializerImpl.class
-org/jboss/example/counter/Counter.class
-org/jboss/example/counter/Counter$___Marshaller_eb547aac9cf063bd4e4a958d2b235ebc7b6ef595babc7f3dbc14ed131281d9c2.class
-org/jboss/example/counter/CounterServlet.class
-org/jboss/example/counter/CounterInitializer.class
-META-INF/services/org.infinispan.protostream.SerializationContextInitializer
