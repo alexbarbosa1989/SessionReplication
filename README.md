@@ -32,12 +32,12 @@ cd $JBOSS_EAP_HOME
 ./bin/jboss-cli.sh
 ~~~
 ~~~            
-[disconnected /] connect
+connect
 ~~~
 
 3- Add the PROTOSTREAM marshaller to the `infinispan-session-management` into the `distributable-web` subsystem:
 ~~~
-[standalone@localhost:9990 /] /subsystem=distributable-web/infinispan-session-management=default:write-attribute(name=marshaller,value=PROTOSTREAM)
+/subsystem=distributable-web/infinispan-session-management=default:write-attribute(name=marshaller,value=PROTOSTREAM)
 ~~~
 Command output:
 ~~~
@@ -52,7 +52,7 @@ Command output:
 
 4- Reload
 ~~~
-[standalone@localhost:9990 /] :reload
+:reload
 ~~~
 Generated change in `distributable-web:` subsystem:
 ~~~
@@ -67,7 +67,7 @@ Generated change in `distributable-web:` subsystem:
 
 5. Deploy the application:
 ~~~
-[standalone@localhost:9990 /] deploy target/counter-0.0.1-SNAPSHOT.war
+deploy target/counter-0.0.1-SNAPSHOT.war
 ~~~
 
 
