@@ -9,22 +9,32 @@
 
 package org.jboss.example.counter;
 
-import java.io.IOException;
-import java.io.Serializable;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.infinispan.protostream.annotations.ProtoFactory;
+import org.infinispan.protostream.annotations.ProtoField;
 
 /**
  *
- * @author  Stan Silvert
+ * @author  Stan Silvert (Changelog: adapted for ProtoStream)
  */
-public class Counter implements Serializable {
+public class Counter {
     public static final Logger LOG = LogManager.getLogger(Counter.class);
     
     private int counter = 0;
     
-    /** Creates a new instance of NotSerializable */
+    /**
+     * required constructor annotated with @ProtoFactory 
+     */
+    @ProtoFactory
+    public Counter(int value) {
+        LOG.info("************************");
+        LOG.info("Counter is being created/deserialized with value: " + value);
+        LOG.info("************************");
+        this.counter = value;
+    }
+
+    /* default constructor */
     public Counter() {
         LOG.info("************************");
         LOG.info("Counter is being created");
@@ -35,29 +45,9 @@ public class Counter implements Serializable {
         this.counter++;
     }
     
+    @ProtoField(number = 1, defaultValue = "0")
     public int getValue() {
         return this.counter;
-    }
-    
-    private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-        LOG.info("****************************");
-        LOG.info("Serialization is under way.");
-        LOG.info("Counter = " + this.counter);
-        LOG.info("****************************");
-        
-        out.defaultWriteObject();
-    }
-    
-    private void readObject(java.io.ObjectInputStream in)
-        throws IOException, ClassNotFoundException {
-            
-        in.defaultReadObject();
-        
-        LOG.info("****************************");
-        LOG.info("I've been desrialized!!!");
-        LOG.info("Counter = " + counter);
-        LOG.info("****************************");
-        
     }
 
 }

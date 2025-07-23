@@ -10,8 +10,6 @@
 package org.jboss.example.counter;
 
 import java.io.*;
-import java.net.*;
-import java.util.ResourceBundle;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
