@@ -4,7 +4,9 @@
 
 Original code (@author  Stan Silvert) and usage description in Red Hat solution article https://access.redhat.com/solutions/46373
 
-Usage
+Usage:
+
+### Build the application
 
 1- Clone project:
 ~~~
@@ -15,11 +17,58 @@ git clone -b protostream https://github.com/alexbarbosa1989/SessionReplication
 mvn clean install
 ~~~
 
+### JBoss EAP 8 deployment
 
-**IMPORTANT**: To enable the application to use **[hotrod-session-management](https://access.redhat.com/documentation/en-us/red_hat_jboss_enterprise_application_platform/7.4/html-single/development_guide/index#session-managenemt-via-hotrod)** configuration to store Web Session Data in remote Data Grid, it is required to remove `<replication-config>` in **[jboss-web.xml](https://github.com/alexbarbosa1989/SessionReplication/blob/main/src/main/webapp/WEB-INF/jboss-web.xml)**. The file should look like below:
+1- Start a JBoss EAP 8 instance with **standalone-ha.xml** profile:
 ~~~
-<?xml version="1.0" encoding="UTF-8"?>
-<jboss-web>
-    <context-root>/counter</context-root>
-</jboss-web>
+cd $JBOSS_EAP_HOME
+~~~
+~~~
+./bin/standalone.sh --server-config=standalone-ha.xml
+~~~
+
+2 -In another terminal session, connect to the `jboss-cli`:
+~~~
+./bin/jboss-cli.sh
+~~~
+~~~            
+[disconnected /] connect
+~~~
+
+3- Add the PROTOSTREAM marshaller to the `infinispan-session-management` into the `distributable-web` subsystem:
+~~~
+[standalone@localhost:9990 /] /subsystem=distributable-web/infinispan-session-management=default:write-attribute(name=marshaller,value=PROTOSTREAM)
+~~~
+Command output:
+~~~
+{
+    "outcome" => "success",
+    "response-headers" => {
+        "operation-requires-reload" => true,
+        "process-state" => "reload-required"
+    }
+}
+~~~
+
+4- Reload
+~~~
+[standalone@localhost:9990 /] :reload
+~~~
+
+5. Deploy the application:
+~~~
+[standalone@localhost:9990 /] deploy target/counter-0.0.1-SNAPSHOT.war
+~~~
+
+
+### Test the app
+
+1. Make a first request to create a cookies file:
+~~~
+curl -c cookies.txt http://localhost:8080/counter/
+~~~
+
+2. Loop a cURL request to increase the counter:
+~~~
+for i in {0..10} ; do curl -b cookies.txt http://localhost:8080/counter/ ; done
 ~~~
