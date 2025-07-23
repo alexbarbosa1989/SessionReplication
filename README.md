@@ -54,6 +54,16 @@ Command output:
 ~~~
 [standalone@localhost:9990 /] :reload
 ~~~
+Generated change in `distributable-web:` subsystem:
+~~~
+        <subsystem xmlns="urn:jboss:domain:distributable-web:4.0" default-session-management="default" default-single-sign-on-management="default">
+            <infinispan-session-management name="default" cache-container="web" granularity="SESSION" marshaller="PROTOSTREAM">
+                <primary-owner-affinity/>
+            </infinispan-session-management>
+            <infinispan-single-sign-on-management name="default" cache-container="web" cache="sso"/>
+            <infinispan-routing cache-container="web" cache="routing"/>
+        </subsystem>
+~~~
 
 5. Deploy the application:
 ~~~
