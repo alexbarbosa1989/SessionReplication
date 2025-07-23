@@ -1,7 +1,8 @@
 # Basic web app to test session replication and sticky session in JBoss EAP 7.x / Wildfly 26(or lower)
 
-**NOTE:** For EAP 8.x / Wildfly 28 (or uppper) refers to the **[Jakarta](https://github.com/alexbarbosa1989/SessionReplication/tree/Jakarta)** branch in current repo.
-          For EAP 8 Protostream marshalling refers to the **[protostream](https://github.com/alexbarbosa1989/SessionReplication/tree/protostream)** branch in current repo.
+## For EAP 8.x / Wildfly 28 (or uppper) refers to the **[Jakarta](https://github.com/alexbarbosa1989/SessionReplication/tree/Jakarta)** branch in current repo.
+
+## For EAP 8 Protostream marshalling refers to the **[protostream](https://github.com/alexbarbosa1989/SessionReplication/tree/protostream)** branch in current repo.
 
 Original code (@author  Stan Silvert) and usage description in Red Hat solution article https://access.redhat.com/solutions/46373
 
